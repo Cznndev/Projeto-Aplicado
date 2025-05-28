@@ -79,7 +79,6 @@ O projeto foi pensado para oferecer uma experiência intuitiva, escalável e mod
 - Arquivos CSS globais, com configurações gerais de estilo, além do suporte ao Tailwind CSS.
 
 ### 📄 Arquivos de configuração
-- `.gitignore`: Arquivos e pastas ignoradas pelo Git.
 - `next.config.mjs`: Configurações específicas do Next.js.
 - `package.json`: Dependências e scripts do projeto.
 - `tailwind.config.ts`: Configurações do Tailwind CSS.
