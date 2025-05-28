@@ -117,9 +117,9 @@ export default function DashboardPage() {
           return <AlertSystem />
         }
         return <AccessDenied />
-      case "ChatBot":
+      case "automacao-ia":
         if (user.role === "admin" || user.role === "ti") {
-          return <ChatBotDashboard />
+          return <AutomationAIDashboard />
         }
         return <AccessDenied />
       default:
