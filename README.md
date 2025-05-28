@@ -1,7 +1,7 @@
 
-# Class Diagram Viewer
+# Diagrama de Classe
 
-O **Class Diagram Viewer** é uma aplicação web desenvolvida com **Next.js**, **TypeScript** e **Tailwind CSS**, que tem como objetivo fornecer uma plataforma interativa para visualização, geração e organização de **diagramas de classes**, além de oferecer funcionalidades avançadas como relatórios, notificações, assistente com IA e gestão de usuários.
+O **Diagrama de Classe** é uma aplicação web desenvolvida com **Next.js**, **TypeScript** e **Tailwind CSS**, que tem como objetivo fornecer uma plataforma interativa para visualização, geração e organização de **diagramas de classes**, além de oferecer funcionalidades avançadas como relatórios, notificações, assistente com IA e gestão de usuários.
 
 O projeto foi pensado para oferecer uma experiência intuitiva, escalável e moderna, utilizando uma arquitetura baseada em componentes reutilizáveis e tecnologias de ponta.
 
