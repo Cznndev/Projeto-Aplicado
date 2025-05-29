@@ -75,6 +75,8 @@ export function HardwareTab() {
   const [statusFilter, setStatusFilter] = useState("todos")
   const [openDialog, setOpenDialog] = useState(false)
   const [editingItem, setEditingItem] = useState(null)
+  const [detailsDialog, setDetailsDialog] = useState(false)
+  const [selectedItem, setSelectedItem] = useState(null)
 
   // Estados do formulário
   const [formData, setFormData] = useState({
@@ -241,6 +243,12 @@ export function HardwareTab() {
       default:
         return <Badge variant="outline">{status}</Badge>
     }
+  }
+
+  // Função para abrir detalhes do item
+  const handleViewDetails = (item) => {
+    setSelectedItem(item)
+    setDetailsDialog(true)
   }
 
   return (
@@ -430,10 +438,13 @@ export function HardwareTab() {
                 {filteredData.map((item) => (
                   <TableRow key={item.id}>
                     <TableCell className="font-medium">
-                      <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => handleViewDetails(item)}
+                        className="flex items-center gap-2 text-left hover:text-primary transition-colors"
+                      >
                         {renderIcon(item.tipo)}
                         {item.tipo}
-                      </div>
+                      </button>
                     </TableCell>
                     <TableCell>{item.modelo}</TableCell>
                     <TableCell>{item.serial}</TableCell>
@@ -470,6 +481,122 @@ export function HardwareTab() {
           </div>
         </CardFooter>
       </Card>
+
+      {/* Dialog de Detalhes */}
+      <Dialog open={detailsDialog} onOpenChange={setDetailsDialog}>
+        <DialogContent className="sm:max-w-[600px]">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              {selectedItem && renderIcon(selectedItem.tipo)}
+              Detalhes do Hardware
+            </DialogTitle>
+            <DialogDescription>Especificações completas do equipamento selecionado.</DialogDescription>
+          </DialogHeader>
+          {selectedItem && (
+            <div className="grid gap-6 py-4">
+              {/* Informações Básicas */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold border-b pb-2">Informações Básicas</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Tipo</Label>
+                    <p className="text-sm">{selectedItem.tipo}</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Modelo</Label>
+                    <p className="text-sm">{selectedItem.modelo}</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Número Serial</Label>
+                    <p className="text-sm font-mono">{selectedItem.serial}</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Status</Label>
+                    <div className="mt-1">{renderStatusBadge(selectedItem.status)}</div>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Departamento</Label>
+                    <p className="text-sm">{selectedItem.departamento}</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Data de Aquisição</Label>
+                    <p className="text-sm">{selectedItem.aquisicao}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Especificações Técnicas */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold border-b pb-2">Especificações Técnicas</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Processador</Label>
+                    <p className="text-sm">Intel Core i7-12700H</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Memória RAM</Label>
+                    <p className="text-sm">16 GB DDR4</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Armazenamento</Label>
+                    <p className="text-sm">512 GB SSD NVMe</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Sistema Operacional</Label>
+                    <p className="text-sm">Windows 11 Pro</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Garantia</Label>
+                    <p className="text-sm">3 anos (até 15/03/2026)</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Localização</Label>
+                    <p className="text-sm">Sala 201 - Andar 2</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Histórico de Manutenção */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold border-b pb-2">Histórico de Manutenção</h3>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between p-2 bg-muted rounded">
+                    <div>
+                      <p className="text-sm font-medium">Limpeza preventiva</p>
+                      <p className="text-xs text-muted-foreground">15/01/2024</p>
+                    </div>
+                    <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
+                      Concluída
+                    </Badge>
+                  </div>
+                  <div className="flex items-center justify-between p-2 bg-muted rounded">
+                    <div>
+                      <p className="text-sm font-medium">Atualização de drivers</p>
+                      <p className="text-xs text-muted-foreground">10/12/2023</p>
+                    </div>
+                    <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
+                      Concluída
+                    </Badge>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setDetailsDialog(false)}>
+              Fechar
+            </Button>
+            <Button
+              onClick={() => {
+                setDetailsDialog(false)
+                handleEdit(selectedItem)
+              }}
+            >
+              Editar
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         <Card>
