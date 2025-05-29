@@ -107,6 +107,8 @@ export function RedeTab() {
   const [searchTerm, setSearchTerm] = useState("")
   const [statusFilter, setStatusFilter] = useState("todos")
   const [openDialog, setOpenDialog] = useState(false)
+  const [detailsDialog, setDetailsDialog] = useState(false)
+  const [selectedItem, setSelectedItem] = useState(null)
 
   // Filtrar dados com base na pesquisa e filtro
   const filteredData = redeData.filter((item) => {
@@ -160,6 +162,12 @@ export function RedeTab() {
       default:
         return <Badge variant="outline">{status}</Badge>
     }
+  }
+
+  // Função para abrir detalhes do item
+  const handleViewDetails = (item) => {
+    setSelectedItem(item)
+    setDetailsDialog(true)
   }
 
   return (
@@ -280,10 +288,13 @@ export function RedeTab() {
                 {filteredData.map((item) => (
                   <TableRow key={item.id}>
                     <TableCell className="font-medium">
-                      <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => handleViewDetails(item)}
+                        className="flex items-center gap-2 text-left hover:text-primary transition-colors"
+                      >
                         {renderIcon(item.tipo)}
                         {item.nome}
-                      </div>
+                      </button>
                     </TableCell>
                     <TableCell>{item.tipo}</TableCell>
                     <TableCell>{item.ip}</TableCell>
@@ -430,6 +441,121 @@ export function RedeTab() {
           </CardFooter>
         </Card>
       </div>
+
+      {/* Dialog de Detalhes do Dispositivo de Rede */}
+      <Dialog open={detailsDialog} onOpenChange={setDetailsDialog}>
+        <DialogContent className="sm:max-w-[600px]">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              {selectedItem && renderIcon(selectedItem.tipo)}
+              Detalhes do Dispositivo de Rede
+            </DialogTitle>
+            <DialogDescription>Configurações e especificações do dispositivo selecionado.</DialogDescription>
+          </DialogHeader>
+          {selectedItem && (
+            <div className="grid gap-6 py-4">
+              {/* Informações Básicas */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold border-b pb-2">Informações Básicas</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Nome</Label>
+                    <p className="text-sm font-medium">{selectedItem.nome}</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Tipo</Label>
+                    <p className="text-sm">{selectedItem.tipo}</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Endereço IP</Label>
+                    <p className="text-sm font-mono">{selectedItem.ip}</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Status</Label>
+                    <div className="mt-1">{renderStatusBadge(selectedItem.status)}</div>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Localização</Label>
+                    <p className="text-sm">{selectedItem.local}</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Fabricante</Label>
+                    <p className="text-sm">{selectedItem.fabricante}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Especificações Técnicas */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold border-b pb-2">Especificações Técnicas</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Modelo</Label>
+                    <p className="text-sm">{selectedItem.modelo}</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Firmware</Label>
+                    <p className="text-sm">v2.1.4</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Portas</Label>
+                    <p className="text-sm">24 x Gigabit Ethernet</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Velocidade</Label>
+                    <p className="text-sm">1 Gbps</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">VLAN Suportada</Label>
+                    <p className="text-sm">Sim (4096 VLANs)</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">PoE</Label>
+                    <p className="text-sm">Sim (370W)</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Configurações de Rede */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold border-b pb-2">Configurações de Rede</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Gateway</Label>
+                    <p className="text-sm font-mono">192.168.1.1</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Máscara de Sub-rede</Label>
+                    <p className="text-sm font-mono">255.255.255.0</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">DNS Primário</Label>
+                    <p className="text-sm font-mono">8.8.8.8</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">DNS Secundário</Label>
+                    <p className="text-sm font-mono">8.8.4.4</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">DHCP</Label>
+                    <p className="text-sm">Habilitado</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Uptime</Label>
+                    <p className="text-sm">45 dias, 12 horas</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setDetailsDialog(false)}>
+              Fechar
+            </Button>
+            <Button>Configurar</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </>
   )
 }
