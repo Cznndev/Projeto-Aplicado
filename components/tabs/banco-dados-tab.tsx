@@ -99,6 +99,8 @@ export function BancoDadosTab() {
   const [searchTerm, setSearchTerm] = useState("")
   const [statusFilter, setStatusFilter] = useState("todos")
   const [openDialog, setOpenDialog] = useState(false)
+  const [detailsDialog, setDetailsDialog] = useState(false)
+  const [selectedItem, setSelectedItem] = useState(null)
 
   // Filtrar dados com base na pesquisa e filtro
   const filteredData = bancoDadosData.filter((item) => {
@@ -142,6 +144,12 @@ export function BancoDadosTab() {
       default:
         return <Badge variant="outline">{status}</Badge>
     }
+  }
+
+  // Função para abrir detalhes do item
+  const handleViewDetails = (item) => {
+    setSelectedItem(item)
+    setDetailsDialog(true)
   }
 
   return (
@@ -258,10 +266,13 @@ export function BancoDadosTab() {
                 {filteredData.map((item) => (
                   <TableRow key={item.id}>
                     <TableCell className="font-medium">
-                      <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => handleViewDetails(item)}
+                        className="flex items-center gap-2 text-left hover:text-primary transition-colors"
+                      >
                         <Database className="h-4 w-4" />
                         {item.nome}
-                      </div>
+                      </button>
                     </TableCell>
                     <TableCell>{item.tipo}</TableCell>
                     <TableCell>{item.servidor}</TableCell>
@@ -442,6 +453,138 @@ export function BancoDadosTab() {
           </CardFooter>
         </Card>
       </div>
+
+      {/* Dialog de Detalhes do Banco de Dados */}
+      <Dialog open={detailsDialog} onOpenChange={setDetailsDialog}>
+        <DialogContent className="sm:max-w-[600px]">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Database className="h-4 w-4" />
+              Detalhes do Banco de Dados
+            </DialogTitle>
+            <DialogDescription>Configurações e especificações do banco de dados selecionado.</DialogDescription>
+          </DialogHeader>
+          {selectedItem && (
+            <div className="grid gap-6 py-4">
+              {/* Informações Básicas */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold border-b pb-2">Informações Básicas</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Nome</Label>
+                    <p className="text-sm font-medium">{selectedItem.nome}</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Tipo</Label>
+                    <p className="text-sm">{selectedItem.tipo}</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Servidor</Label>
+                    <p className="text-sm">{selectedItem.servidor}</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Status</Label>
+                    <div className="mt-1">{renderStatusBadge(selectedItem.status)}</div>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Versão</Label>
+                    <p className="text-sm">{selectedItem.versao}</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Tamanho</Label>
+                    <p className="text-sm">{selectedItem.tamanho}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Configurações do Servidor */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold border-b pb-2">Configurações do Servidor</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Host</Label>
+                    <p className="text-sm font-mono">db-server-01.etwicca.local</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Porta</Label>
+                    <p className="text-sm">3306</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Charset</Label>
+                    <p className="text-sm">utf8mb4</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Engine</Label>
+                    <p className="text-sm">InnoDB</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Max Connections</Label>
+                    <p className="text-sm">1000</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Buffer Pool</Label>
+                    <p className="text-sm">8 GB</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Backup e Manutenção */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold border-b pb-2">Backup e Manutenção</h3>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between p-2 bg-muted rounded">
+                    <div>
+                      <p className="text-sm font-medium">Backup Completo</p>
+                      <p className="text-xs text-muted-foreground">Hoje, 03:00 - 250 GB</p>
+                    </div>
+                    <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
+                      Sucesso
+                    </Badge>
+                  </div>
+                  <div className="flex items-center justify-between p-2 bg-muted rounded">
+                    <div>
+                      <p className="text-sm font-medium">Backup Incremental</p>
+                      <p className="text-xs text-muted-foreground">Ontem, 23:00 - 15 GB</p>
+                    </div>
+                    <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
+                      Sucesso
+                    </Badge>
+                  </div>
+                </div>
+              </div>
+
+              {/* Performance */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold border-b pb-2">Performance</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">CPU Usage</Label>
+                    <p className="text-sm">15%</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Memory Usage</Label>
+                    <p className="text-sm">6.2 GB / 16 GB</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Connections</Label>
+                    <p className="text-sm">45 / 1000</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Uptime</Label>
+                    <p className="text-sm">30 dias, 5 horas</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setDetailsDialog(false)}>
+              Fechar
+            </Button>
+            <Button>Gerenciar</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </>
   )
 }
