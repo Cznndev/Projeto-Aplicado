@@ -1,4 +1,35 @@
-"use client"
+"use 
+                    <div className="grid grid-cols-4 items-center gap-4">
+                      <Label htmlFor="processador" className="text-right">Processador</Label>
+                      <Input id="processador" className="col-span-3" value={formData.processador}
+                        onChange={(e) => setFormData({ ...formData, processador: e.target.value })} />
+                    </div>
+                    <div className="grid grid-cols-4 items-center gap-4">
+                      <Label htmlFor="memoria" className="text-right">Memória RAM</Label>
+                      <Input id="memoria" className="col-span-3" value={formData.memoria}
+                        onChange={(e) => setFormData({ ...formData, memoria: e.target.value })} />
+                    </div>
+                    <div className="grid grid-cols-4 items-center gap-4">
+                      <Label htmlFor="armazenamento" className="text-right">Armazenamento</Label>
+                      <Input id="armazenamento" className="col-span-3" value={formData.armazenamento}
+                        onChange={(e) => setFormData({ ...formData, armazenamento: e.target.value })} />
+                    </div>
+                    <div className="grid grid-cols-4 items-center gap-4">
+                      <Label htmlFor="sistema" className="text-right">Sistema Operacional</Label>
+                      <Input id="sistema" className="col-span-3" value={formData.sistema}
+                        onChange={(e) => setFormData({ ...formData, sistema: e.target.value })} />
+                    </div>
+                    <div className="grid grid-cols-4 items-center gap-4">
+                      <Label htmlFor="garantia" className="text-right">Garantia</Label>
+                      <Input id="garantia" className="col-span-3" value={formData.garantia}
+                        onChange={(e) => setFormData({ ...formData, garantia: e.target.value })} />
+                    </div>
+                    <div className="grid grid-cols-4 items-center gap-4">
+                      <Label htmlFor="localizacao" className="text-right">Localização</Label>
+                      <Input id="localizacao" className="col-span-3" value={formData.localizacao}
+                        onChange={(e) => setFormData({ ...formData, localizacao: e.target.value })} />
+                    </div>
+client"
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
@@ -161,6 +192,7 @@ export function HardwareTab() {
   // Função para abrir dialog de edição
   const handleEdit = (item) => {
     setEditingItem(item)
+    const specs = especificacoesPorModelo[item.modelo] || {}
     setFormData({
       tipo: item.tipo,
       modelo: item.modelo,
@@ -168,6 +200,12 @@ export function HardwareTab() {
       departamento: item.departamento,
       aquisicao: item.aquisicao,
       status: item.status,
+      processador: specs.processador || "",
+      memoria: specs.memoria || "",
+      armazenamento: specs.armazenamento || "",
+      sistema: specs.sistema || "",
+      garantia: specs.garantia || "",
+      localizacao: specs.localizacao || "",
     })
     setOpenDialog(true)
   }
@@ -205,7 +243,15 @@ export function HardwareTab() {
         id: Math.max(...hardwareData.map((item) => item.id)) + 1,
         ...formData,
       }
-      setHardwareData([...hardwareData, newItem])
+      especificacoesPorModelo[formData.modelo] = {
+      processador: formData.processador,
+      memoria: formData.memoria,
+      armazenamento: formData.armazenamento,
+      sistema: formData.sistema,
+      garantia: formData.garantia,
+      localizacao: formData.localizacao,
+    }
+    setHardwareData([...hardwareData, newItem])
       toast({
         title: "Hardware adicionado",
         description: "Novo equipamento foi adicionado com sucesso.",
