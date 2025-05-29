@@ -29,15 +29,7 @@ const initialHardwareData = [
     serial: "XPS159876",
     status: "Ativo",
     departamento: "TI",
-    aquisicao: "2023-03-15",
-    especificacoes: {
-      processador: "Intel Core i7-12700H",
-      memoria: "32 GB DDR5",
-      armazenamento: "1 TB SSD NVMe",
-      sistema: "Windows 11 Pro",
-      garantia: "3 anos (até 15/03/2026)",
-      localizacao: "Sala 201 - Andar 2",
-    },
+    aquisicao: "15/03/2023",
   },
   {
     id: 2,
@@ -46,15 +38,7 @@ const initialHardwareData = [
     serial: "ELT8001234",
     status: "Ativo",
     departamento: "Financeiro",
-    aquisicao: "2023-01-10",
-    especificacoes: {
-      processador: "Intel Core i5-11400",
-      memoria: "16 GB DDR4",
-      armazenamento: "512 GB SSD",
-      sistema: "Windows 10 Pro",
-      garantia: "2 anos (até 10/01/2025)",
-      localizacao: "Sala Financeiro",
-    },
+    aquisicao: "10/01/2023",
   },
   {
     id: 3,
@@ -63,15 +47,7 @@ const initialHardwareData = [
     serial: "PE7405678",
     status: "Manutenção",
     departamento: "TI",
-    aquisicao: "2022-11-05",
-    especificacoes: {
-      processador: "2x Intel Xeon Silver 4214",
-      memoria: "128 GB DDR4 ECC",
-      armazenamento: "4x 2TB SSD RAID",
-      sistema: "VMware ESXi 7",
-      garantia: "5 anos (até 05/11/2027)",
-      localizacao: "Data Center",
-    },
+    aquisicao: "05/11/2022",
   },
   {
     id: 4,
@@ -80,15 +56,7 @@ const initialHardwareData = [
     serial: "LJP2022",
     status: "Ativo",
     departamento: "RH",
-    aquisicao: "2023-06-20",
-    especificacoes: {
-      processador: "ARM Cortex-A9 800MHz",
-      memoria: "256 MB",
-      armazenamento: "N/A",
-      sistema: "Firmware HP LaserJet",
-      garantia: "1 ano (até 20/06/2024)",
-      localizacao: "Sala RH",
-    },
+    aquisicao: "20/06/2023",
   },
   {
     id: 5,
@@ -97,17 +65,54 @@ const initialHardwareData = [
     serial: "SGS22987",
     status: "Ativo",
     departamento: "Diretoria",
-    aquisicao: "2023-04-12",
-    especificacoes: {
-      processador: "Snapdragon 8 Gen 1",
-      memoria: "8 GB RAM",
-      armazenamento: "256 GB",
-      sistema: "Android 13",
-      garantia: "2 anos (até 12/04/2025)",
-      localizacao: "Sala Diretoria",
-    },
+    aquisicao: "12/04/2023",
   },
 ]
+
+
+const especificacoesPorModelo = {
+  "Dell XPS 15": {
+    processador: "Intel Core i7-12700H",
+    memoria: "32 GB DDR5",
+    armazenamento: "1 TB SSD NVMe",
+    sistema: "Windows 11 Pro",
+    garantia: "3 anos",
+    localizacao: "Sala 201 - Andar 2",
+  },
+  "HP EliteDesk 800": {
+    processador: "Intel Core i5-11400",
+    memoria: "16 GB DDR4",
+    armazenamento: "512 GB SSD",
+    sistema: "Windows 10 Pro",
+    garantia: "2 anos",
+    localizacao: "Sala Financeiro",
+  },
+  "Dell PowerEdge R740": {
+    processador: "2x Intel Xeon Silver 4214",
+    memoria: "128 GB DDR4 ECC",
+    armazenamento: "4x 2TB SSD RAID",
+    sistema: "VMware ESXi 7",
+    garantia: "5 anos",
+    localizacao: "Data Center",
+  },
+  "HP LaserJet Pro": {
+    processador: "ARM Cortex-A9 800MHz",
+    memoria: "256 MB",
+    armazenamento: "N/A",
+    sistema: "Firmware HP LaserJet",
+    garantia: "1 ano",
+    localizacao: "Sala RH",
+  },
+  "Samsung Galaxy S22": {
+    processador: "Snapdragon 8 Gen 1",
+    memoria: "8 GB RAM",
+    armazenamento: "256 GB",
+    sistema: "Android 13",
+    garantia: "2 anos",
+    localizacao: "Sala Diretoria",
+  },
+}
+
 
 export function HardwareTab() {
   const [hardwareData, setHardwareData] = useState(initialHardwareData)
@@ -567,33 +572,42 @@ export function HardwareTab() {
 
               {/* Especificações Técnicas */}
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold border-b pb-2">Especificações Técnicas</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <Label className="text-sm font-medium text-muted-foreground">Processador</Label>
-                    <p className="text-sm">Intel Core i7-12700H</p>
-                  </div>
-                  <div>
-                    <Label className="text-sm font-medium text-muted-foreground">Memória RAM</Label>
-                    <p className="text-sm">16 GB DDR4</p>
-                  </div>
-                  <div>
-                    <Label className="text-sm font-medium text-muted-foreground">Armazenamento</Label>
-                    <p className="text-sm">512 GB SSD NVMe</p>
-                  </div>
-                  <div>
-                    <Label className="text-sm font-medium text-muted-foreground">Sistema Operacional</Label>
-                    <p className="text-sm">Windows 11 Pro</p>
-                  </div>
-                  <div>
-                    <Label className="text-sm font-medium text-muted-foreground">Garantia</Label>
-                    <p className="text-sm">3 anos (até 15/03/2026)</p>
-                  </div>
-                  <div>
-                    <Label className="text-sm font-medium text-muted-foreground">Localização</Label>
-                    <p className="text-sm">Sala 201 - Andar 2</p>
-                  </div>
-                </div>
+                
+<h3 className="text-lg font-semibold border-b pb-2">Especificações Técnicas</h3>
+<div className="grid grid-cols-2 gap-4">
+  {(() => {
+    const specs = especificacoesPorModelo[selectedItem?.modelo] || {};
+    return (
+      <>
+        <div>
+          <Label className="text-sm font-medium text-muted-foreground">Processador</Label>
+          <p className="text-sm">{specs.processador || 'N/A'}</p>
+        </div>
+        <div>
+          <Label className="text-sm font-medium text-muted-foreground">Memória RAM</Label>
+          <p className="text-sm">{specs.memoria || 'N/A'}</p>
+        </div>
+        <div>
+          <Label className="text-sm font-medium text-muted-foreground">Armazenamento</Label>
+          <p className="text-sm">{specs.armazenamento || 'N/A'}</p>
+        </div>
+        <div>
+          <Label className="text-sm font-medium text-muted-foreground">Sistema Operacional</Label>
+          <p className="text-sm">{specs.sistema || 'N/A'}</p>
+        </div>
+        <div>
+          <Label className="text-sm font-medium text-muted-foreground">Garantia</Label>
+          <p className="text-sm">{specs.garantia || 'N/A'}</p>
+        </div>
+        <div>
+          <Label className="text-sm font-medium text-muted-foreground">Localização</Label>
+          <p className="text-sm">{specs.localizacao || 'N/A'}</p>
+        </div>
+      </>
+    );
+  })()}
+</div>
+
               </div>
 
               {/* Histórico de Manutenção */}
