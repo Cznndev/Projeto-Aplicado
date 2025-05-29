@@ -99,6 +99,8 @@ export function SoftwareTab() {
   const [searchTerm, setSearchTerm] = useState("")
   const [statusFilter, setStatusFilter] = useState("todos")
   const [openDialog, setOpenDialog] = useState(false)
+  const [detailsDialog, setDetailsDialog] = useState(false)
+  const [selectedItem, setSelectedItem] = useState(null)
 
   // Filtrar dados com base na pesquisa e filtro
   const filteredData = softwareData.filter((item) => {
@@ -135,6 +137,12 @@ export function SoftwareTab() {
       default:
         return <Badge variant="outline">{status}</Badge>
     }
+  }
+
+  // Função para abrir detalhes do item
+  const handleViewDetails = (item) => {
+    setSelectedItem(item)
+    setDetailsDialog(true)
   }
 
   return (
@@ -260,7 +268,14 @@ export function SoftwareTab() {
               <TableBody>
                 {filteredData.map((item) => (
                   <TableRow key={item.id}>
-                    <TableCell className="font-medium">{item.nome}</TableCell>
+                    <TableCell className="font-medium">
+                      <button
+                        onClick={() => handleViewDetails(item)}
+                        className="text-left hover:text-primary transition-colors"
+                      >
+                        {item.nome}
+                      </button>
+                    </TableCell>
                     <TableCell>{item.tipo}</TableCell>
                     <TableCell>{item.licenca}</TableCell>
                     <TableCell>{item.validade}</TableCell>
@@ -424,6 +439,112 @@ export function SoftwareTab() {
           </CardContent>
         </Card>
       </div>
+
+      {/* Dialog de Detalhes do Software */}
+      <Dialog open={detailsDialog} onOpenChange={setDetailsDialog}>
+        <DialogContent className="sm:max-w-[600px]">
+          <DialogHeader>
+            <DialogTitle>Detalhes do Software</DialogTitle>
+            <DialogDescription>Informações completas da licença de software selecionada.</DialogDescription>
+          </DialogHeader>
+          {selectedItem && (
+            <div className="grid gap-6 py-4">
+              {/* Informações da Licença */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold border-b pb-2">Informações da Licença</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Nome do Software</Label>
+                    <p className="text-sm font-medium">{selectedItem.nome}</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Tipo</Label>
+                    <p className="text-sm">{selectedItem.tipo}</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Tipo de Licença</Label>
+                    <p className="text-sm">{selectedItem.licenca}</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Status</Label>
+                    <div className="mt-1">{renderStatusBadge(selectedItem.status)}</div>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Data de Validade</Label>
+                    <p className="text-sm">{selectedItem.validade}</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Número de Usuários</Label>
+                    <p className="text-sm">{selectedItem.usuarios} usuários</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Detalhes Técnicos */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold border-b pb-2">Detalhes Técnicos</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Versão</Label>
+                    <p className="text-sm">2023.1.0</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Fornecedor</Label>
+                    <p className="text-sm">Microsoft Corporation</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Chave de Produto</Label>
+                    <p className="text-sm font-mono">XXXXX-XXXXX-XXXXX-XXXXX</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Suporte Técnico</Label>
+                    <p className="text-sm">Até {selectedItem.validade}</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Custo Anual</Label>
+                    <p className="text-sm">R$ 2.500,00</p>
+                  </div>
+                  <div>
+                    <Label className="text-sm font-medium text-muted-foreground">Responsável</Label>
+                    <p className="text-sm">Departamento de TI</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Usuários Ativos */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold border-b pb-2">Usuários Ativos</h3>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between p-2 bg-muted rounded">
+                    <div>
+                      <p className="text-sm font-medium">João Silva</p>
+                      <p className="text-xs text-muted-foreground">joao.silva@etwicca.com</p>
+                    </div>
+                    <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
+                      Ativo
+                    </Badge>
+                  </div>
+                  <div className="flex items-center justify-between p-2 bg-muted rounded">
+                    <div>
+                      <p className="text-sm font-medium">Maria Santos</p>
+                      <p className="text-xs text-muted-foreground">maria.santos@etwicca.com</p>
+                    </div>
+                    <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
+                      Ativo
+                    </Badge>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setDetailsDialog(false)}>
+              Fechar
+            </Button>
+            <Button>Renovar Licença</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </>
   )
 }
