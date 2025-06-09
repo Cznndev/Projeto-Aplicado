@@ -1,0 +1,56 @@
+{
+  "db_name": "SQLite",
+  "query": "INSERT INTO databases (nome, tipo, servidor, versao, tamanho, status) VALUES (?, ?, ?, ?, ?, ?) RETURNING *",
+  "describe": {
+    "columns": [
+      {
+        "name": "id",
+        "ordinal": 0,
+        "type_info": "Int64"
+      },
+      {
+        "name": "nome",
+        "ordinal": 1,
+        "type_info": "Text"
+      },
+      {
+        "name": "tipo",
+        "ordinal": 2,
+        "type_info": "Text"
+      },
+      {
+        "name": "servidor",
+        "ordinal": 3,
+        "type_info": "Text"
+      },
+      {
+        "name": "versao",
+        "ordinal": 4,
+        "type_info": "Text"
+      },
+      {
+        "name": "tamanho",
+        "ordinal": 5,
+        "type_info": "Text"
+      },
+      {
+        "name": "status",
+        "ordinal": 6,
+        "type_info": "Text"
+      }
+    ],
+    "parameters": {
+      "Right": 6
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      false
+    ]
+  },
+  "hash": "ea00e93c5bcc9a7983fdafd87a2f162eafcd89bace2c2f64dea7d8812eae3b7b"
+}

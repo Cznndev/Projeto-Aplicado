@@ -1,0 +1,62 @@
+{
+  "db_name": "SQLite",
+  "query": "INSERT INTO network_devices (nome, tipo, ip, local, fabricante, modelo, status) VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING *",
+  "describe": {
+    "columns": [
+      {
+        "name": "id",
+        "ordinal": 0,
+        "type_info": "Int64"
+      },
+      {
+        "name": "nome",
+        "ordinal": 1,
+        "type_info": "Text"
+      },
+      {
+        "name": "tipo",
+        "ordinal": 2,
+        "type_info": "Text"
+      },
+      {
+        "name": "ip",
+        "ordinal": 3,
+        "type_info": "Text"
+      },
+      {
+        "name": "local",
+        "ordinal": 4,
+        "type_info": "Text"
+      },
+      {
+        "name": "fabricante",
+        "ordinal": 5,
+        "type_info": "Text"
+      },
+      {
+        "name": "modelo",
+        "ordinal": 6,
+        "type_info": "Text"
+      },
+      {
+        "name": "status",
+        "ordinal": 7,
+        "type_info": "Text"
+      }
+    ],
+    "parameters": {
+      "Right": 7
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      false,
+      false
+    ]
+  },
+  "hash": "07d11e5a44e7c31bd8050fd8b57e5d90f5264ad63cb72adbb4f647d551629add"
+}

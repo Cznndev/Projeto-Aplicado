@@ -1,0 +1,56 @@
+{
+  "db_name": "SQLite",
+  "query": "INSERT INTO hardware (tipo, modelo, serial, status, departamento, aquisicao) VALUES (?, ?, ?, ?, ?, ?) RETURNING *",
+  "describe": {
+    "columns": [
+      {
+        "name": "id",
+        "ordinal": 0,
+        "type_info": "Int64"
+      },
+      {
+        "name": "tipo",
+        "ordinal": 1,
+        "type_info": "Text"
+      },
+      {
+        "name": "modelo",
+        "ordinal": 2,
+        "type_info": "Text"
+      },
+      {
+        "name": "serial",
+        "ordinal": 3,
+        "type_info": "Text"
+      },
+      {
+        "name": "status",
+        "ordinal": 4,
+        "type_info": "Text"
+      },
+      {
+        "name": "departamento",
+        "ordinal": 5,
+        "type_info": "Text"
+      },
+      {
+        "name": "aquisicao",
+        "ordinal": 6,
+        "type_info": "Text"
+      }
+    ],
+    "parameters": {
+      "Right": 6
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true
+    ]
+  },
+  "hash": "50bcfba443d02937471d1002dbb4643af5a31198cdea5deca237da2746e81979"
+}
