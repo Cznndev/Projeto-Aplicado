@@ -5,77 +5,87 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 210 40% 15%;
+    --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
-    --card-foreground: 210 40% 15%;
+    --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
-    --popover-foreground: 210 40% 15%;
-    --primary: 210 100% 35%;
-    --primary-foreground: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
     --secondary: 210 40% 96%;
-    --secondary-foreground: 210 40% 15%;
+    --secondary-foreground: 222.2 84% 4.9%;
     --muted: 210 40% 96%;
-    --muted-foreground: 210 40% 45%;
+    --muted-foreground: 215.4 16.3% 46.9%;
     --accent: 210 40% 96%;
-    --accent-foreground: 210 40% 15%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 210 40% 90%;
-    --input: 210 40% 90%;
-    --ring: 210 100% 35%;
-    --radius: 0.5rem;
-    --chart-1: 210 100% 35%;
-    --chart-2: 210 100% 45%;
-    --chart-3: 210 100% 55%;
-    --chart-4: 210 100% 65%;
-    --chart-5: 210 100% 75%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.75rem;
+    --chart-1: 221.2 83.2% 53.3%;
+    --chart-2: 212 95% 68%;
+    --chart-3: 216 92% 60%;
+    --chart-4: 210 98% 78%;
+    --chart-5: 212 97% 87%;
 
     /* Sidebar specific colors */
-    --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 210 40% 15%;
-    --sidebar-primary: 210 100% 35%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 210 40% 96%;
-    --sidebar-accent-foreground: 210 40% 15%;
-    --sidebar-border: 210 40% 90%;
-    --sidebar-ring: 210 100% 35%;
+    --sidebar-background: 222.2 84% 4.9%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 221.2 83.2% 53.3%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 217.2 32.6% 17.5%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217.2 32.6% 17.5%;
+    --sidebar-ring: 221.2 83.2% 53.3%;
+
+    /* ET & WICCA Brand Colors */
+    --et-primary: 221.2 83.2% 53.3%;
+    --et-primary-dark: 221.2 83.2% 45%;
+    --et-secondary: 212 95% 68%;
+    --et-accent: 47.9 95.8% 53.1%;
+    --et-success: 142.1 76.2% 36.3%;
+    --et-warning: 32.6 94.6% 43.7%;
+    --et-error: 0 84.2% 60.2%;
+    --et-info: 199.89 89.47% 48.04%;
   }
 
   .dark {
-    --background: 210 40% 8%;
-    --foreground: 0 0% 95%;
-    --card: 210 40% 10%;
-    --card-foreground: 0 0% 95%;
-    --popover: 210 40% 10%;
-    --popover-foreground: 0 0% 95%;
-    --primary: 210 100% 50%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 210 40% 15%;
-    --secondary-foreground: 0 0% 95%;
-    --muted: 210 40% 15%;
-    --muted-foreground: 210 40% 65%;
-    --accent: 210 40% 15%;
-    --accent-foreground: 0 0% 95%;
-    --destructive: 0 62% 50%;
-    --destructive-foreground: 0 0% 95%;
-    --border: 210 40% 20%;
-    --input: 210 40% 20%;
-    --ring: 210 100% 50%;
-    --chart-1: 210 100% 50%;
-    --chart-2: 210 100% 60%;
-    --chart-3: 210 100% 70%;
-    --chart-4: 210 100% 80%;
-    --chart-5: 210 100% 90%;
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 94.1%;
+    --chart-1: 217.2 91.2% 59.8%;
+    --chart-2: 212 95% 68%;
+    --chart-3: 216 92% 60%;
+    --chart-4: 210 98% 78%;
+    --chart-5: 212 97% 87%;
 
     /* Sidebar specific colors for dark mode */
-    --sidebar-background: 210 40% 8%;
-    --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 210 100% 50%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 210 40% 15%;
-    --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 210 40% 20%;
-    --sidebar-ring: 210 100% 50%;
+    --sidebar-background: 222.2 84% 4.9%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 217.2 91.2% 59.8%;
+    --sidebar-primary-foreground: 222.2 84% 4.9%;
+    --sidebar-accent: 217.2 32.6% 17.5%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217.2 32.6% 17.5%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
@@ -85,38 +95,122 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
 
 /* Custom ET & WICCA styles */
 .et-wicca-gradient {
-  background: linear-gradient(135deg, hsl(210 100% 35%) 0%, hsl(210 100% 45%) 100%);
+  background: linear-gradient(135deg, hsl(var(--et-primary)) 0%, hsl(var(--et-secondary)) 100%);
+}
+
+.et-wicca-gradient-dark {
+  background: linear-gradient(135deg, hsl(var(--et-primary-dark)) 0%, hsl(222.2 84% 4.9%) 100%);
 }
 
 .et-wicca-card {
-  @apply bg-white border border-blue-200 shadow-sm;
+  @apply bg-card border border-border shadow-lg rounded-xl backdrop-blur-sm;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.et-wicca-card-dark {
+  @apply bg-card border border-border shadow-lg rounded-xl backdrop-blur-sm;
+  background: rgba(34, 34, 34, 0.95);
 }
 
 .et-wicca-button-primary {
-  @apply bg-blue-600 hover:bg-blue-700 text-white;
+  @apply bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-200 rounded-lg;
 }
 
 .et-wicca-button-secondary {
-  @apply bg-white hover:bg-blue-50 text-blue-600 border border-blue-200;
+  @apply bg-secondary hover:bg-secondary/80 text-secondary-foreground border border-border shadow-md hover:shadow-lg transition-all duration-200 rounded-lg;
 }
 
 .et-wicca-badge-success {
-  @apply bg-green-50 text-green-700 border-green-200;
+  @apply bg-green-50 text-green-700 border-green-200 dark:bg-green-900/20 dark:text-green-400 dark:border-green-800;
 }
 
 .et-wicca-badge-warning {
-  @apply bg-amber-50 text-amber-700 border-amber-200;
+  @apply bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-900/20 dark:text-amber-400 dark:border-amber-800;
 }
 
 .et-wicca-badge-error {
-  @apply bg-red-50 text-red-700 border-red-200;
+  @apply bg-red-50 text-red-700 border-red-200 dark:bg-red-900/20 dark:text-red-400 dark:border-red-800;
 }
 
 .et-wicca-badge-info {
-  @apply bg-blue-50 text-blue-700 border-blue-200;
+  @apply bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-800;
+}
+
+.et-wicca-sidebar {
+  background: linear-gradient(180deg, hsl(var(--sidebar-background)) 0%, hsl(217.2 32.6% 17.5%) 100%);
+  border-right: 1px solid hsl(var(--sidebar-border));
+}
+
+.et-wicca-nav-item {
+  @apply transition-all duration-200 rounded-lg hover:scale-105;
+}
+
+.et-wicca-nav-item-active {
+  @apply bg-primary text-primary-foreground shadow-lg;
+  background: linear-gradient(135deg, hsl(var(--et-primary)) 0%, hsl(var(--et-secondary)) 100%);
+}
+
+.et-wicca-nav-item-inactive {
+  @apply text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground;
+}
+
+/* Animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.2s ease-out;
+}
+
+/* Glass morphism effect */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glass-effect-dark {
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Hover effects */
+.hover-lift {
+  @apply transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg;
+}
+
+.hover-glow {
+  @apply transition-all duration-200;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 20px hsl(var(--et-primary) / 0.3);
 }
