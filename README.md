@@ -124,3 +124,7 @@ Use as seguintes credenciais de demonstração para fazer login com diferentes p
   * **Gestor:**
       * **Email:** `gestor@etwicca.com`
       * **Senha:** `gestor123`
+
+💻 Desenvolvido Por
+Cznn
+OmgGass
