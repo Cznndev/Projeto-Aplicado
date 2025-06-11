@@ -1,8 +1,8 @@
 # ET & WICCA - Sistema de Gestão de TI
 
-Uma plataforma completa e moderna para gestão de ativos de tecnologia da informação (TI), desenvolvida com um backend robusto em **Rust (Axum)** e um frontend interativo em **Next.js**. O sistema oferece uma solução centralizada para monitorar e gerenciar hardware, software, redes, bancos de dados e usuários em um ambiente coeso e intuitivo.
+Uma plataforma completa e moderna para gestão de ativos de tecnologia da informação (TI), desenvolvida com um backend robusto em **Rust (Axum)** e um frontend interativo em **Next.js**. O sistema oferece uma solução centralizada para monitorar e gerenciar hardware, software, redes, bancos de dados, usuários e muito mais.
 
-## 🎯 Funcionalidades
+## 🌟 Funcionalidades Principais
 
   * **🗺️ Dashboard Interativo:** Um painel completo que organiza as principais funcionalidades da aplicação, com cards e métricas que se adaptam ao perfil do usuário (`Admin`, `TI`, `Gestor`).
   * **🗂️ Gestão de Ativos de TI:** Módulos dedicados para o inventário e gerenciamento de:
@@ -11,16 +11,19 @@ Uma plataforma completa e moderna para gestão de ativos de tecnologia da inform
       * **Rede**: Dispositivos como switches, roteadores e firewalls.
       * **Banco de Dados**: Gerenciamento de instâncias e servidores.
   * **🔔 Sistema de Notificações e Alertas:**
-      * Centro de notificações integrado com filtros e gerenciamento.
-      * Criação de regras de alerta personalizadas para monitorar métricas (CPU, disco, etc.) com diferentes níveis de severidade.
-      * Notificações de sistema em tempo real (toasts).
+      * Centro de notificações integrado.
+      * Suporte a **alertas**, **toasts** e **notificações contextuais**.
+      * Criação de regras de alerta personalizadas para monitorar métricas (CPU, disco, rede) e receber alertas baseados em severidade.
   * **🧠 Integração com Inteligência Artificial:**
-      * **Chatbot** integrado para suporte técnico e auxílio dentro da plataforma.
-      * Dashboard de automações para detecção de anomalias, manutenção preditiva e sugestões de otimização.
-  * **📑 Relatórios Avançados:** Geração, agendamento e exportação de relatórios detalhados sobre inventário, performance, custos e conformidade.
+      * **Chatbot** integrado para auxílio dentro da plataforma.
+      * Sistema de **sugestões de melhorias** baseado em IA, que analisa o contexto dos diagramas e oferece otimizações.
+      * **Dashboard de automações**, permitindo que a IA ajude em tarefas repetitivas.
+  * **📑 Relatórios Avançados:**
+      * Geração de relatórios com análises detalhadas.
+      * Ferramentas para visualização de métricas e informações sobre os diagramas.
   * **⚙️ Configurações e Gestão de Usuários:**
-      * Painel completo para **gestão de usuários**, perfis e permissões detalhadas por módulo.
-      * Módulo de **configurações do sistema** para personalizar aspectos da interface, segurança, notificações e integrações.
+      * Painel de **configurações do sistema** onde é possível personalizar aspectos da interface e funcionamento.
+      * Módulo de **gestão de usuários**, permitindo administração de permissões, perfis e dados dos usuários da plataforma.
 
 ## 🛠️ Tecnologias Utilizadas
 
@@ -32,7 +35,7 @@ O projeto é estruturado como um monorepo, separando claramente o frontend do ba
   * **Linguagem**: [TypeScript](https://www.typescriptlang.org/)
   * **Estilização**: [Tailwind CSS](https://tailwindcss.com/)
   * **Componentes UI**: [Shadcn/UI](https://ui.shadcn.com/)
-  * **Diagramas**: [Mermaid.js](https://mermaid.js.org/) (para visualizações específicas)
+  * **Diagramas**: [Mermaid.js](https://mermaid.js.org/)
 
 ### **Backend**
 
@@ -44,7 +47,7 @@ O projeto é estruturado como um monorepo, separando claramente o frontend do ba
 
 ### **Banco de Dados**
 
-  * [MySQL](https://www.mysql.com/)
+  * [SQLite](https://www.sqlite.org/index.html)
 
 -----
 
@@ -68,7 +71,6 @@ Siga os passos abaixo para configurar e rodar o ambiente de desenvolvimento loca
   * [Node.js](https://nodejs.org/) (versão 22 ou superior)
   * [pnpm](https://pnpm.io/)
   * [Rust](https://www.rust-lang.org/tools/install) e `cargo`
-  * [MySQL Server](https://www.mysql.com/)
   * `sqlx-cli` (`cargo install sqlx-cli`)
 
 ### **1. Configuração do Backend (Rust)**
@@ -78,15 +80,15 @@ Siga os passos abaixo para configurar e rodar o ambiente de desenvolvimento loca
 cd et_wicca_backend
 
 # Crie um arquivo .env na raiz de /et_wicca_backend e adicione suas variáveis.
-# Certifique-se de que o banco 'et_wicca_db' já foi criado no seu MySQL.
+# O arquivo de banco de dados do SQLite será criado automaticamente.
 # Exemplo de conteúdo para o arquivo .env:
-# DATABASE_URL="mysql://root:sua_senha@localhost:3306/et_wicca_db"
+# DATABASE_URL="sqlite:et_wicca.db"
 # JWT_SECRET="um-segredo-muito-forte-aqui"
 
 # Compile as dependências
 cargo build
 
-# Execute as migrações para criar as tabelas no banco de dados
+# Execute as migrações para criar o arquivo de banco de dados e as tabelas
 sqlx migrate run
 
 # Inicie o servidor do backend
@@ -100,7 +102,7 @@ O servidor backend estará rodando em `http://127.0.0.1:8080`.
 ```bash
 # Em um novo terminal, navegue até a raiz do projeto
 # (um nível acima da pasta do backend)
-cd ..
+cd .. 
 
 # Instale as dependências do frontend
 pnpm install
@@ -125,6 +127,9 @@ Use as seguintes credenciais de demonstração para fazer login com diferentes p
       * **Email:** `gestor@etwicca.com`
       * **Senha:** `gestor123`
 
-💻 Desenvolvido Por
-Cznn
-OmgGass
+-----
+
+## 💻 Desenvolvido Por
+
+  * **[Cznn](https://www.google.com/search?q=https://github.com/cznndev)**
+  * **[OmgGass](https://www.google.com/search?q=https://github.com/OmgGass)**
