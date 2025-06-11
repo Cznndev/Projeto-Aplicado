@@ -1,108 +1,134 @@
+Com certeza\! Analisei a estrutura completa do seu projeto, incluindo o backend em Rust, e atualizei seu `README.md` para ser mais preciso e completo.
 
-# Diagrama de Classe
+A nova versão corrige a descrição do projeto para refletir seu propósito real como um **Sistema de Gestão de TI** (e não apenas uma ferramenta de diagrama de classe), e adiciona seções cruciais sobre as tecnologias do backend e as instruções detalhadas para executar tanto o frontend quanto o backend.
 
-O **Diagrama de Classe** é uma aplicação web desenvolvida com **Next.js**, **TypeScript** e **Tailwind CSS**, que tem como objetivo fornecer uma plataforma interativa para visualização, geração e organização de **diagramas de classes**, além de oferecer funcionalidades avançadas como relatórios, notificações, assistente com IA e gestão de usuários.
+Pode substituir o conteúdo do seu `README.md` por este:
 
-O projeto foi pensado para oferecer uma experiência intuitiva, escalável e moderna, utilizando uma arquitetura baseada em componentes reutilizáveis e tecnologias de ponta.
+-----
 
----
+# ET & WICCA - Sistema de Gestão de TI
+
+Uma plataforma completa e moderna para gestão de ativos de tecnologia da informação (TI), desenvolvida com um backend robusto em **Rust (Axum)** e um frontend interativo em **Next.js**. O sistema oferece uma solução centralizada para monitorar e gerenciar hardware, software, redes, bancos de dados e usuários em um ambiente coeso e intuitivo.
 
 ## 🎯 Funcionalidades
 
-### 🗺️ Dashboard Interativo
-- Um painel completo que organiza as principais funcionalidades da aplicação.
-- Navegação entre diferentes abas temáticas:
-  - **Software**: Apresenta diagramas e informações relacionadas a desenvolvimento de software.
-  - **Banco de Dados**: Focado em estruturas de banco de dados, suas conexões e entidades.
-  - **Hardware**: Diagramas e componentes físicos da arquitetura de computadores.
-  - **Redes**: Estruturas e topologias de redes.
+  * **🗺️ Dashboard Interativo:** Um painel completo que organiza as principais funcionalidades da aplicação, com cards e métricas que se adaptam ao perfil do usuário (`Admin`, `TI`, `Gestor`).
+  * **🗂️ Gestão de Ativos de TI:** Módulos dedicados para o inventário e gerenciamento de:
+      * **Hardware**: Equipamentos como servidores, laptops e desktops.
+      * **Software**: Controle de licenças, versões e validades.
+      * **Rede**: Dispositivos como switches, roteadores e firewalls.
+      * **Banco de Dados**: Gerenciamento de instâncias e servidores.
+  * **🔔 Sistema de Notificações e Alertas:**
+      * Centro de notificações integrado com filtros e gerenciamento.
+      * Criação de regras de alerta personalizadas para monitorar métricas (CPU, disco, etc.) com diferentes níveis de severidade.
+      * Notificações de sistema em tempo real (toasts).
+  * **🧠 Integração com Inteligência Artificial:**
+      * **Chatbot** integrado para suporte técnico e auxílio dentro da plataforma.
+      * Dashboard de automações para detecção de anomalias, manutenção preditiva e sugestões de otimização.
+  * **📑 Relatórios Avançados:** Geração, agendamento e exportação de relatórios detalhados sobre inventário, performance, custos e conformidade.
+  * **⚙️ Configurações e Gestão de Usuários:**
+      * Painel completo para **gestão de usuários**, perfis e permissões detalhadas por módulo.
+      * Módulo de **configurações do sistema** para personalizar aspectos da interface, segurança, notificações e integrações.
 
-### 📊 Visualização de Diagramas
-- Geração dinâmica de **diagramas de classe** utilizando a biblioteca **Mermaid.js**.
-- Suporte para renderização de diagramas diretamente no navegador.
-- Estilo responsivo e adaptado para diferentes dispositivos.
+## 🛠️ Tecnologias Utilizadas
 
-### 🔔 Sistema de Notificações
-- Centro de notificações integrado.
-- Suporte a **alertas**, **toasts** e **notificações contextuais**.
-- Sistema de feedback em tempo real para ações do usuário.
+O projeto é estruturado como um monorepo, separando claramente o frontend do backend.
 
-### 🧠 Integração com Inteligência Artificial
-- **Chatbot** integrado para auxílio dentro da plataforma.
-- Sistema de **sugestões de melhorias** baseado em IA, que analisa o contexto dos diagramas e oferece otimizações.
-- **Dashboard de automações**, permitindo que a IA ajude em tarefas repetitivas.
+### **Frontend**
 
-### 📑 Relatórios Avançados
-- Geração de relatórios com análises detalhadas.
-- Ferramentas para visualização de métricas e informações sobre os diagramas.
+  * **Framework**: [Next.js](https://nextjs.org/)
+  * **Linguagem**: [TypeScript](https://www.typescriptlang.org/)
+  * **Estilização**: [Tailwind CSS](https://tailwindcss.com/)
+  * **Componentes UI**: [Shadcn/UI](https://ui.shadcn.com/)
+  * **Diagramas**: [Mermaid.js](https://mermaid.js.org/) (para visualizações específicas)
 
-### ⚙️ Configurações e Gestão
-- Painel de **configurações do sistema** onde é possível personalizar aspectos da interface e funcionamento.
-- Módulo de **gestão de usuários**, permitindo administração de permissões, perfis e dados dos usuários da plataforma.
+### **Backend**
 
----
+  * **Linguagem**: [Rust](https://www.rust-lang.org/)
+  * **Framework Web**: [Axum](https://github.com/tokio-rs/axum)
+  * **Assíncrono**: [Tokio](https://tokio.rs/)
+  * **Acesso ao Banco de Dados**: [SQLx](https://github.com/launchbadge/sqlx)
+  * **Autenticação**: JWT (JSON Web Tokens) com hashing de senha via Argon2.
+
+### **Banco de Dados**
+
+  * [MySQL](https://www.mysql.com/)
+
+-----
 
 ## 🗂️ Estrutura do Projeto
 
-### 📁 `/app`
-- Contém as páginas principais da aplicação, incluindo o layout global e rotas.
-- Arquivos importantes:
-  - `layout.tsx`: Define o layout padrão da aplicação.
-  - `page.tsx`: Página inicial.
-  - `/dashboard/page.tsx`: Página principal do dashboard.
+  * **`/` (raiz)**: Contém toda a aplicação frontend em Next.js.
+      * **`/app`**: Páginas e layouts da aplicação.
+      * **`/components`**: Componentes React reutilizáveis, organizados por funcionalidade (UI, dashboard, abas, etc.).
+  * **`/et_wicca_backend`**: Contém toda a API backend desenvolvida em Rust.
+      * **`/src`**: Código-fonte do servidor, incluindo os *handlers* de rotas, modelos de dados e lógica de negócio.
+      * **`/migrations`**: Arquivos de migração SQL para criar a estrutura do banco de dados.
 
-### 📁 `/components`
-- Componentes reutilizáveis organizados por funcionalidade:
-  - `/ui`: Biblioteca de componentes de interface (botões, cards, tabelas, inputs, sliders, etc.).
-  - `/dashboard`: Componentes específicos do painel, como header, shell e overview.
-  - `/notifications`: Sistema de notificações (alertas, toasts e centro de notificações).
-  - `/ai`: Integrações com IA, incluindo chatbot e sugestões inteligentes.
-  - `/reports`: Componentes de geração de relatórios.
-  - `/settings`: Configurações do sistema.
-  - `/users`: Gestão de usuários.
-  - `/tabs`: Componentes das abas temáticas (software, redes, banco de dados e hardware).
-  - `mermaid.tsx`: Componente responsável pela renderização dos diagramas de classe usando Mermaid.
-  - `theme-provider.tsx`: Gerenciamento de temas (claro/escuro).
+-----
 
-### 📁 `/hooks`
-- Hooks customizados para funcionalidades específicas, como:
-  - `use-mobile`: Detecta se o dispositivo é mobile.
-  - `use-toast`: Gerencia notificações rápidas (toasts).
+## 🚀 Como Executar o Projeto
 
-### 📁 `/lib`
-- Funções utilitárias que são usadas em diferentes partes do projeto.
+Siga os passos abaixo para configurar e rodar o ambiente de desenvolvimento localmente.
 
-### 📁 `/public`
-- Arquivos estáticos como imagens, logos e placeholders.
+### **Pré-requisitos**
 
-### 📁 `/styles`
-- Arquivos CSS globais, com configurações gerais de estilo, além do suporte ao Tailwind CSS.
+  * [Node.js](https://nodejs.org/) (versão 22 ou superior)
+  * [pnpm](https://pnpm.io/)
+  * [Rust](https://www.rust-lang.org/tools/install) e `cargo`
+  * [MySQL Server](https://www.mysql.com/)
+  * `sqlx-cli` (`cargo install sqlx-cli`)
 
-### 📄 Arquivos de configuração
-- `next.config.mjs`: Configurações específicas do Next.js.
-- `package.json`: Dependências e scripts do projeto.
-- `tailwind.config.ts`: Configurações do Tailwind CSS.
-- `tsconfig.json`: Configurações de TypeScript.
-- `pnpm-lock.yaml`: Controle de versão das dependências (PNPM).
-- `postcss.config.mjs`: Configurações do PostCSS.
+### **1. Configuração do Backend (Rust)**
 
----
+```bash
+# Navegue até a pasta do backend
+cd et_wicca_backend
 
-## 🚀 Tecnologias Utilizadas
+# Crie um arquivo .env na raiz de /et_wicca_backend e adicione suas variáveis.
+# Certifique-se de que o banco 'et_wicca_db' já foi criado no seu MySQL.
+# Exemplo de conteúdo para o arquivo .env:
+# DATABASE_URL="mysql://root:sua_senha@localhost:3306/et_wicca_db"
+# JWT_SECRET="um-segredo-muito-forte-aqui"
 
-- **Next.js** – Framework React para aplicações full stack.
-- **TypeScript** – Tipagem estática para JavaScript.
-- **Tailwind CSS** – Framework utilitário para estilização.
-- **Mermaid.js** – Geração de diagramas baseados em texto.
-- **Shadcn UI** – Componentização de interfaces acessíveis e modernas.
-- **Framer Motion** – Animações fluidas na interface.
-- **React** – Biblioteca principal de construção da UI.
+# Compile as dependências
+cargo build
 
----
+# Execute as migrações para criar as tabelas no banco de dados
+sqlx migrate run
 
-## 🧠 Objetivos do Projeto
+# Inicie o servidor do backend
+cargo run
+```
 
-- Fornecer uma ferramenta visual e interativa para geração de diagramas de classe.
-- Tornar o aprendizado e a organização de sistemas mais intuitiva.
-- Oferecer suporte a IA para aumentar a produtividade.
-- Facilitar a colaboração e o entendimento entre equipes de desenvolvimento, engenharia de software, redes e banco de dados.
+O servidor backend estará rodando em `http://127.0.0.1:8080`.
+
+### **2. Configuração do Frontend (Next.js)**
+
+```bash
+# Em um novo terminal, navegue até a raiz do projeto
+# (um nível acima da pasta do backend)
+cd ..
+
+# Instale as dependências do frontend
+pnpm install
+
+# Inicie o servidor de desenvolvimento
+pnpm dev
+```
+
+A aplicação estará acessível em `http://localhost:3000`.
+
+### **3. Acesso ao Sistema**
+
+Use as seguintes credenciais de demonstração para fazer login com diferentes perfis:
+
+  * **Administrador:**
+      * **Email:** `admin@etwicca.com`
+      * **Senha:** `admin123`
+  * **Técnico de TI:**
+      * **Email:** `ti@etwicca.com`
+      * **Senha:** `ti123`
+  * **Gestor:**
+      * **Email:** `gestor@etwicca.com`
+      * **Senha:** `gestor123`
