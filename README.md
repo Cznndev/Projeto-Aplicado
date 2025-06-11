@@ -1,11 +1,3 @@
-Com certeza\! Analisei a estrutura completa do seu projeto, incluindo o backend em Rust, e atualizei seu `README.md` para ser mais preciso e completo.
-
-A nova versão corrige a descrição do projeto para refletir seu propósito real como um **Sistema de Gestão de TI** (e não apenas uma ferramenta de diagrama de classe), e adiciona seções cruciais sobre as tecnologias do backend e as instruções detalhadas para executar tanto o frontend quanto o backend.
-
-Pode substituir o conteúdo do seu `README.md` por este:
-
------
-
 # ET & WICCA - Sistema de Gestão de TI
 
 Uma plataforma completa e moderna para gestão de ativos de tecnologia da informação (TI), desenvolvida com um backend robusto em **Rust (Axum)** e um frontend interativo em **Next.js**. O sistema oferece uma solução centralizada para monitorar e gerenciar hardware, software, redes, bancos de dados e usuários em um ambiente coeso e intuitivo.
