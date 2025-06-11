@@ -131,5 +131,5 @@ Use as seguintes credenciais de demonstração para fazer login com diferentes p
 
 ## 💻 Desenvolvido Por
 
-  * **[Cznn](https://www.google.com/search?q=https://github.com/cznndev)**
-  * **[OmgGass](https://www.google.com/search?q=https://github.com/OmgGass)**
+  * **[Cznndev](https://github.com/Cznndev)**
+  * **[OmgGass](https://github.com/OmgGass)**
