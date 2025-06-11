@@ -21,20 +21,11 @@ interface DashboardShellProps {
   children: React.ReactNode
   onTabChange?: (tabValue: string) => void
   activeTab?: string
+  user: { name: string; role: string } | null
 }
 
-export function DashboardShell({ children, onTabChange, activeTab }: DashboardShellProps) {
-  const [user, setUser] = useState(null)
-
-  useEffect(() => {
-    const userData = localStorage.getItem("et-wicca-user")
-    if (userData) {
-      setUser(JSON.parse(userData))
-    }
-  }, [])
-
-  // Definir itens do menu baseado no nível de acesso
-  const getMenuItems = () => {
+// Função helper movida para fora do componente
+const getMenuItems = (user: { role: string } | null, activeTab?: string) => {
     const baseItems = [
       {
         icon: BarChart3,
@@ -55,143 +46,44 @@ export function DashboardShell({ children, onTabChange, activeTab }: DashboardSh
     if (user.role === "admin") {
       return [
         ...baseItems,
-        {
-          icon: HardDrive,
-          label: "Hardware",
-          value: "hardware",
-          active: activeTab === "hardware",
-        },
-        {
-          icon: FileText,
-          label: "Software",
-          value: "software",
-          active: activeTab === "software",
-        },
-        {
-          icon: Network,
-          label: "Rede",
-          value: "rede",
-          active: activeTab === "rede",
-        },
-        {
-          icon: Database,
-          label: "Banco de Dados",
-          value: "banco-dados",
-          active: activeTab === "banco-dados",
-        },
-        {
-          icon: Activity,
-          label: "Monitoramento",
-          value: "monitoramento",
-          active: activeTab === "monitoramento",
-        },
-        {
-          icon: AlertTriangle,
-          label: "Alertas",
-          value: "alertas",
-          active: activeTab === "alertas",
-        },
-        {
-          icon: Bot,
-          label: "Automação & IA",
-          value: "automacao-ia",
-          active: activeTab === "automacao-ia",
-        },
-        {
-          icon: FileText,
-          label: "Relatórios",
-          value: "relatorios-avancados",
-          active: activeTab === "relatorios-avancados",
-        },
-        {
-          icon: Users,
-          label: "Usuários",
-          value: "usuarios",
-          active: activeTab === "usuarios",
-        },
-        {
-          icon: Settings,
-          label: "Configurações",
-          value: "configuracoes",
-          active: activeTab === "configuracoes",
-        },
+        { icon: HardDrive, label: "Hardware", value: "hardware", active: activeTab === "hardware" },
+        { icon: FileText, label: "Software", value: "software", active: activeTab === "software" },
+        { icon: Network, label: "Rede", value: "rede", active: activeTab === "rede" },
+        { icon: Database, label: "Banco de Dados", value: "banco-dados", active: activeTab === "banco-dados" },
+        { icon: Activity, label: "Monitoramento", value: "monitoramento", active: activeTab === "monitoramento" },
+        { icon: AlertTriangle, label: "Alertas", value: "alertas", active: activeTab === "alertas" },
+        { icon: Bot, label: "Automação & IA", value: "automacao-ia", active: activeTab === "automacao-ia" },
+        { icon: FileText, label: "Relatórios", value: "relatorios-avancados", active: activeTab === "relatorios-avancados" },
+        { icon: Users, label: "Usuários", value: "usuarios", active: activeTab === "usuarios" },
+        { icon: Settings, label: "Configurações", value: "configuracoes", active: activeTab === "configuracoes" },
       ]
     } else if (user.role === "ti") {
       return [
         ...baseItems,
-        {
-          icon: HardDrive,
-          label: "Hardware",
-          value: "hardware",
-          active: activeTab === "hardware",
-        },
-        {
-          icon: FileText,
-          label: "Software",
-          value: "software",
-          active: activeTab === "software",
-        },
-        {
-          icon: Network,
-          label: "Rede",
-          value: "rede",
-          active: activeTab === "rede",
-        },
-        {
-          icon: Database,
-          label: "Banco de Dados",
-          value: "banco-dados",
-          active: activeTab === "banco-dados",
-        },
-        {
-          icon: Activity,
-          label: "Monitoramento",
-          value: "monitoramento",
-          active: activeTab === "monitoramento",
-        },
-        {
-          icon: AlertTriangle,
-          label: "Alertas",
-          value: "alertas",
-          active: activeTab === "alertas",
-        },
-        {
-          icon: Bot,
-          label: "Automação & IA",
-          value: "automacao-ia",
-          active: activeTab === "automacao-ia",
-        },
-        {
-          icon: FileText,
-          label: "Relatórios",
-          value: "relatorios-avancados",
-          active: activeTab === "relatorios-avancados",
-        },
+        { icon: HardDrive, label: "Hardware", value: "hardware", active: activeTab === "hardware" },
+        { icon: FileText, label: "Software", value: "software", active: activeTab === "software" },
+        { icon: Network, label: "Rede", value: "rede", active: activeTab === "rede" },
+        { icon: Database, label: "Banco de Dados", value: "banco-dados", active: activeTab === "banco-dados" },
+        { icon: Activity, label: "Monitoramento", value: "monitoramento", active: activeTab === "monitoramento" },
+        { icon: AlertTriangle, label: "Alertas", value: "alertas", active: activeTab === "alertas" },
+        { icon: Bot, label: "Automação & IA", value: "automacao-ia", active: activeTab === "automacao-ia" },
+        { icon: FileText, label: "Relatórios", value: "relatorios-avancados", active: activeTab === "relatorios-avancados" },
       ]
     } else if (user.role === "gestor") {
       return [
         ...baseItems,
-        {
-          icon: FileText,
-          label: "Relatórios",
-          value: "relatorios-avancados",
-          active: activeTab === "relatorios-avancados",
-        },
-        {
-          icon: BarChart3,
-          label: "Status Geral",
-          value: "status",
-          active: activeTab === "status",
-        },
+        { icon: FileText, label: "Relatórios", value: "relatorios-avancados", active: activeTab === "relatorios-avancados" },
+        { icon: BarChart3, label: "Status Geral", value: "status", active: activeTab === "status" },
       ]
     }
 
     return baseItems
-  }
+}
 
-  const menuItems = getMenuItems()
+export function DashboardShell({ children, onTabChange, activeTab, user }: DashboardShellProps) {
 
-  // Função para navegar entre as abas
+  const menuItems = getMenuItems(user, activeTab)
+
   const handleNavigation = (tabValue: string) => {
     if (onTabChange) {
       onTabChange(tabValue)
@@ -210,3 +102,13 @@ export function DashboardShell({ children, onTabChange, activeTab }: DashboardSh
                   <Badge variant="outline" className="text-xs border-blue-200 text-blue-700">
                     {user.role === "admin" ? "Admin" : user.role === "ti" ? "TI" : "Gestor"}
                   </Badge>
+                )}
+              </div>
+
+              {user && (
+                <div className="text-xs text-blue-600 bg-blue-50 p-2 rounded border border-blue-100">
+                  <strong>Nível de Acesso:</strong>
+                  <br />
+                  {user.role === "admin" && "Acesso completo ao sistema"}
+                  {user.role === "ti" && "Acesso técnico e operacional"}
+                  {user.
