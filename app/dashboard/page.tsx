@@ -15,18 +15,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert"
 import {
   Shield,
   Activity,
-  HardDrive,
-  Database,
-  Network,
-  AlertTriangle,
-  CheckCircle,
-  TrendingUp,
-  Users,
-  BarChart3,
-  Thermometer,
 } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
 import { AlertSystem } from "@/components/notifications/alert-system"
 import { AdvancedReports } from "@/components/reports/advanced-reports"
 import { AutomationAIDashboard } from "@/components/ai/automation-ai-dashboard"
@@ -102,7 +91,6 @@ function RelatoriosTab({ userRole }: { userRole: string }) {
 
 // Componente para a aba de Monitoramento
 function MonitoramentoTab() {
-    // Este é um componente de exemplo. A lógica completa seria mais complexa.
     return (
         <Card className="border-blue-200">
             <CardHeader>
@@ -197,7 +185,7 @@ export default function DashboardPage() {
   }
 
   return (
-    <DashboardShell onTabChange={handleTabChange} activeTab={activeTab}>
+    <DashboardShell onTabChange={handleTabChange} activeTab={activeTab} user={user}>
       <DashboardHeader
         heading="Sistema de Gestão de TI - ET & WICCA"
         subheading={`Bem-vindo, ${user.name}! Gerencie todos os recursos de tecnologia da empresa em um só lugar.`}
