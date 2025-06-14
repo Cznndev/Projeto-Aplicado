@@ -135,5 +135,5 @@ Use as seguintes credenciais de demonstração para fazer login com diferentes p
   * **[OmgGass](https://github.com/OmgGass)**
 -----
 
-  * **TODOS OS DADOS SÃO FICTICIOS:**
+  * **TODOS OS DADOS SÃO FICTICIOS.**
 
