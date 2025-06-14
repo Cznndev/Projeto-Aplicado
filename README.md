@@ -133,3 +133,7 @@ Use as seguintes credenciais de demonstração para fazer login com diferentes p
 
   * **[Cznndev](https://github.com/Cznndev)**
   * **[OmgGass](https://github.com/OmgGass)**
+-----
+
+  * **TODOS OS DADOS SÃO FICTICIOS:**
+
